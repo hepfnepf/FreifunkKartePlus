@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Freifunk-Karte</string>
+    <string name="center_button_description">Zentriert die Karte auf den momentanen Standort, wenn möglich</string>
+    <string name="location_alert_title">Warnung</string>
+    <string name="location_alert_message">Ihr Standort konnte nicht ermittelt werden.</string>
+    <string name="marker_snippet">Den Marker erneut klicken, um dorthin zu navigieren.</string>
+    <string name="bubble_snippet" >Hier klicken, um das Infofenster zu schließen.</string>
+    <string name="cache_alert_title">Karte herunterladen</string>
+    <string name="cache_alert_message">Aktuellen Kartenausschnitt zur Offline Nutzung herunterladen?</string>
+    <string name="no">Nein</string>
+    <string name="yes">Ja</string>
+</resources>

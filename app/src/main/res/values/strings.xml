@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Freifunk-Karte</string>
+    <string name="center_button_description">Centers the map to the current location, if possible</string>
+    <string name="location_alert_title">Alert</string>
+    <string name="location_alert_message">Your location could not be determined.</string>
+    <string name="marker_snippet">Click the marker again for navigating there.</string>
+    <string name="bubble_snippet">Click here for closing this info window.</string>
+    <string name="cache_alert_title">Downloading Map</string>
+    <string name="cache_alert_message">Download current region for offline usage?</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
+</resources>
