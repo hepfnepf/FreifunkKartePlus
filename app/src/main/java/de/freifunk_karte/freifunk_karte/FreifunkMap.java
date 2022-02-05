@@ -7,6 +7,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -145,7 +146,6 @@ public class FreifunkMap extends Activity implements CustomZoomButtonsController
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this,
                     new String[] { Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION },
@@ -199,7 +199,10 @@ public class FreifunkMap extends Activity implements CustomZoomButtonsController
         if (startLocation != null) {
             startPoint = new GeoPoint(startLocation);
         } else {
-            startPoint = new GeoPoint(49.152, 8.2987713);
+            SharedPreferences sharedPreferences = getSharedPreferences("StoreLocation", MODE_PRIVATE);
+            double latitude =  sharedPreferences.getFloat("Latitude",(float)52.520007);
+            double longitude = sharedPreferences.getFloat("Longitude", (float)13.404954);
+            startPoint = new GeoPoint(latitude, longitude);
         }
         mapController.setCenter(startPoint);
 
@@ -245,6 +248,22 @@ public class FreifunkMap extends Activity implements CustomZoomButtonsController
     public void onPause() {
         super.onPause();
         map.onPause();
+    }
+
+    @Override
+    public  void onStop(){
+        Location currentLocation = getLocation();
+        if (currentLocation!=null){
+            float latitude = (float) currentLocation.getLatitude();
+            float longitude = (float) currentLocation.getLongitude();
+            SharedPreferences sharedPreferences = getSharedPreferences("StoreLocation", MODE_PRIVATE);
+            SharedPreferences.Editor preferenceEditor= sharedPreferences.edit();
+            preferenceEditor.putFloat("Latitude",latitude);
+            preferenceEditor.putFloat("Longitude",longitude);
+            preferenceEditor.commit();
+        }
+
+        super.onStop();
     }
 
     @Override
